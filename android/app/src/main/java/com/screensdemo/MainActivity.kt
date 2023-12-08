@@ -1,22 +1,31 @@
 package com.screensdemo
 
-import com.facebook.react.ReactActivity
-import com.facebook.react.ReactActivityDelegate
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
-import com.facebook.react.defaults.DefaultReactActivityDelegate
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.facebook.react.ReactFragment
+import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 
-class MainActivity : ReactActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main), DefaultHardwareBackBtnHandler {
 
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  override fun getMainComponentName(): String = "ScreensDemo"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // For hybrid applications, restoring from state is imperative
+        super.onCreate(savedInstanceState)
+        addReactNativeFragment()
+    }
 
-  /**
-   * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
-   * which allows you to enable New Architecture with a single boolean flags [fabricEnabled]
-   */
-  override fun createReactActivityDelegate(): ReactActivityDelegate =
-      DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+    private fun addReactNativeFragment() {
+        val fragment = ReactFragment
+            .Builder()
+            .setComponentName("ScreensDemo")
+            .setFabricEnabled(false)
+            .setLaunchOptions(Bundle.EMPTY)
+            .build()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragmentContainer, fragment)
+            .commit()
+    }
+
+    override fun invokeDefaultOnBackPressed() {
+        onBackPressed()
+    }
 }

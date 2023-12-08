@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_gravity="center"
+  android:orientation="vertical"
+  tools:context=".EmptyActivity">
+
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:elevation="4dp"
+    app:navigationIcon="?attr/homeAsUpIndicator"
+    app:title="Mock Native Activity" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:padding="8dp"
+    android:text="This is an empty sample activity to simulate adding activities to the back stack. Turn off the 'Retain activities' setting in developer options to simulate fragment restoration."
+    tools:ignore="HardcodedText">
+
+  </TextView>
+
+</LinearLayout>
